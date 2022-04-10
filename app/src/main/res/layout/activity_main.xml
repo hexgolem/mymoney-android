@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
-        android:text="Go Cashless.\nGo Green"
+        android:text="Go Cashless\nGo Green"
         android:textColor="@color/white"
         android:textSize="52sp"
         app:layout_constraintBottom_toBottomOf="parent"

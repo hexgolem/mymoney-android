@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/settingoption"
+        android:title="Profile Settings"/>
+    <item
+        android:id="@+id/logoutoption"
+        android:title="Log Out"/>
+    <item
+        android:id="@+id/aboutoption"
+        android:title="About"/>
+</menu>
