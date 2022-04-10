@@ -16,12 +16,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        if(isUserLoggedIn()){
-            Intent intent=new Intent(this,HomeScreen.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -49,7 +43,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private boolean isUserLoggedIn(){
-        return (SaveSharedPreferences.getUserName(getApplicationContext()).length()!=0);
-    }
 }

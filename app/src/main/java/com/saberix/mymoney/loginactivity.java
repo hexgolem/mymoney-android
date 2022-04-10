@@ -50,7 +50,6 @@ public class loginactivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (isInputValid()) {
                     SaveSharedPreferences.setUserName(getApplicationContext(),etphone.getText().toString());
-                    finish();
                     Intent intent=new Intent(loginactivity.this,HomeScreen.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
