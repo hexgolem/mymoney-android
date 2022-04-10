@@ -49,8 +49,8 @@ public class loginactivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (isInputValid()) {
-                    SaveSharedPreferences.setUserName(getApplicationContext(),etphone.getText().toString());
-                    Intent intent=new Intent(loginactivity.this,HomeScreen.class);
+                    SaveSharedPreferences.setUserName(getApplicationContext(), etphone.getText().toString());
+                    Intent intent = new Intent(loginactivity.this, HomeScreen.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
@@ -95,7 +95,7 @@ public class loginactivity extends AppCompatActivity {
                     } catch (EOFException e) {
                         Toast.makeText(getApplicationContext(), "Phone number not registered", Toast.LENGTH_SHORT).show();
                         valid = false;
-                        EOF=true;
+                        EOF = true;
                     }
                 }
             } catch (FileNotFoundException e) {
@@ -107,7 +107,7 @@ public class loginactivity extends AppCompatActivity {
             }
         }
         if (valid) {
-            String checkpass = getDataFromFileAt(4, "" + phone + ".bin");
+            String checkpass = MyMoneyTools.getDataFromFileAt(4, "" + phone + ".bin", this);
             if (checkpass != null) {
                 if (!pass.equals(checkpass)) {
                     Toast.makeText(getApplicationContext(), "The password is incorrect", Toast.LENGTH_SHORT).show();
@@ -118,20 +118,6 @@ public class loginactivity extends AppCompatActivity {
             }
         }
         return valid;
-    }
-
-    private String getDataFromFileAt(int pos, String filename) {
-        String data = null;
-        try (
-                FileInputStream fin = openFileInput(filename);
-                DataInputStream din = new DataInputStream(fin);) {
-            for (int i = 0; i < pos; i++) {
-                data = din.readUTF();
-            }
-        } catch (IOException e) {
-            Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-        }
-        return data;
     }
 
 }

@@ -2,15 +2,18 @@ package com.saberix.mymoney;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,11 +30,19 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
     PayFragment payFragment=new PayFragment();
     HistoryFragment historyFragment=new HistoryFragment();
 
+    TextView txt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+        txt=findViewById(R.id.welcome_message);
+        String nameOfUser=MyMoneyTools.getDataFromFileAt(1,
+                ""+SaveSharedPreferences.getUserName(this)+".bin",
+                this);
+        txt.setText("Welcome 😀\n"+nameOfUser);
 
         navigationBarView=findViewById(R.id.bottomNavigationView);
         navigationBarView.setOnItemSelectedListener(this);
@@ -73,4 +84,5 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
