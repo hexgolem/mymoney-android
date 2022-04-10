@@ -85,4 +85,20 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            new AlertDialog.Builder(HomeScreen.this)
+                    .setTitle("Confirm")
+                    .setMessage("Are you sure you want to exit?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {finish();}
+                    })
+                    .setNegativeButton("No",null)
+                    .show();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
