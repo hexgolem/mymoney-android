@@ -77,10 +77,21 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId()==R.id.logoutoption){
-            SaveSharedPreferences.clearUserName(getApplicationContext());
-            finish();
-            Intent intent=new Intent(this,MainActivity.class);
-            startActivity(intent);
+            new AlertDialog.Builder(HomeScreen.this)
+                    .setTitle("Confirm")
+                    .setMessage("Are you sure you want to Logout?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            SaveSharedPreferences.clearUserName(getApplicationContext());
+                            finish();
+                            Intent intent=new Intent(HomeScreen.this,MainActivity.class);
+                            startActivity(intent);
+                        }
+                    })
+                    .setNegativeButton("No",null)
+                    .show();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
