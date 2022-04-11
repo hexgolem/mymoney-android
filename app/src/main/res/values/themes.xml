@@ -20,4 +20,10 @@
         <item name="colorAccent">#FFFC9F51</item>
         <item name="android:statusBarColor">#FFFC9F51</item>
     </style>
+    <style name="AboutTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/design_default_color_primary</item>
+        <item name="colorPrimaryDark">@color/design_default_color_primary_dark</item>
+        <item name="colorAccent">#FFFC9F51</item>
+        <item name="android:statusBarColor">#FFFC9F51</item>
+    </style>
 </resources>

@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMoney">
         <activity
+            android:name=".AboutActivity"
+            android:exported="false"
+            android:theme="@style/AboutTheme"/>
+        <activity
             android:name=".HomeScreen"
             android:exported="false" />
         <activity
@@ -20,15 +24,16 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
-        </activity>
-        <activity android:name=".SplashScreenActivity"
-            android:theme="@style/SplashTheme"
-            android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            android:exported="false"></activity>
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

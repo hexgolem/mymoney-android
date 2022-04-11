@@ -93,6 +93,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
                     .show();
             return true;
         }
+        if(item.getItemId()==R.id.aboutoption){
+            Intent intent=new Intent(HomeScreen.this,AboutActivity.class);
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 
