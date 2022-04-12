@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMoney">
         <activity
+            android:name=".ProfileSetting"
+            android:exported="false" />
+        <activity
             android:name=".AboutActivity"
             android:exported="false"
-            android:theme="@style/AboutTheme"/>
+            android:theme="@style/AboutTheme" />
         <activity
             android:name=".HomeScreen"
             android:exported="false" />
@@ -24,7 +27,7 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true"

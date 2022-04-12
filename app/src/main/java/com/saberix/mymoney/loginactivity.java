@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,7 +40,6 @@ public class loginactivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("🎉Welcome Back");
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.rgb(252, 159, 81)));
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +69,7 @@ public class loginactivity extends AppCompatActivity {
         String pass = etpass.getText().toString();
 
         boolean valid = true;
-        if (!IsPhoneValid.check(phone)) {
+        if (!MyMoneyTools.isPhoneValid(phone)) {
             etphone.setError("Phone number not valid");
             valid = false;
         }

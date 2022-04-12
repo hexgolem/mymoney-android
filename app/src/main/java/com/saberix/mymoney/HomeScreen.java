@@ -1,24 +1,17 @@
 package com.saberix.mymoney;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
@@ -96,6 +89,12 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
         if(item.getItemId()==R.id.aboutoption){
             Intent intent=new Intent(HomeScreen.this,AboutActivity.class);
             startActivity(intent);
+            return true;
+        }
+        if(item.getItemId()==R.id.settingoption){
+            Intent intent=new Intent(HomeScreen.this,ProfileSetting.class);
+            startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

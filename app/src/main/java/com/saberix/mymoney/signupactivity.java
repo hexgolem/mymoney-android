@@ -116,7 +116,7 @@ public class signupactivity extends AppCompatActivity {
             etemail.setError("Email not valid");
             valid = false;
         }
-        if (!IsPhoneValid.check(phone) && phone.length() != 0) {
+        if (!MyMoneyTools.isPhoneValid(phone) && phone.length() != 0) {
             etphone.setError("Phone number not valid");
             valid = false;
         }
