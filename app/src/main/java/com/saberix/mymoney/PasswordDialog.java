@@ -23,10 +23,13 @@ public class PasswordDialog extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+
         phone=SaveSharedPreferences.getUserName(getActivity().getApplicationContext());
+
         AlertDialog.Builder builder=new AlertDialog.Builder(getActivity());
         LayoutInflater inflater=getActivity().getLayoutInflater();
         View view=inflater.inflate(R.layout.password_dialog,null);
+
         builder.setView(view)
                 .setTitle("Confirm Password")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {

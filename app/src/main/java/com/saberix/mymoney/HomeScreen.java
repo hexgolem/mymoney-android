@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -27,7 +28,9 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
@@ -35,6 +38,10 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
         String nameOfUser=MyMoneyTools.getDataFromFileAt(1,
                 ""+SaveSharedPreferences.getUserName(this)+".bin",
                 this);
+        if(nameOfUser==null){
+            Toast.makeText(this,"Something went wrong",Toast.LENGTH_SHORT).show();
+            finish();
+        }
         txt.setText("Welcome 😀\n"+nameOfUser);
 
         navigationBarView=findViewById(R.id.bottomNavigationView);
@@ -77,7 +84,7 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             SaveSharedPreferences.clearUserName(getApplicationContext());
-                            finish();
+                            finishAffinity();
                             Intent intent=new Intent(HomeScreen.this,MainActivity.class);
                             startActivity(intent);
                         }

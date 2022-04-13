@@ -5,7 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,23 +17,15 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.File;
 
 public class ProfileSetting extends AppCompatActivity implements PasswordDialog.PasswordDialogListener {
 
     TextInputLayout nametxt;
     TextInputLayout emailtxt;
     TextInputLayout phonetxt;
-    private String phone;
-    private String name;
-    private String email;
-    private String pass;
+    private String saved_file_data[];
+    private String new_file_data[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,15 +42,16 @@ public class ProfileSetting extends AppCompatActivity implements PasswordDialog.
         nametxt = findViewById(R.id.textInputLayoutname);
         emailtxt = findViewById(R.id.textInputLayoutemail);
         phonetxt = findViewById(R.id.textInputLayoutphone);
+        saved_file_data = new String[5];
+        new_file_data = new String[5];
 
-        phone = SaveSharedPreferences.getUserName(this);
-        name = MyMoneyTools.getDataFromFileAt(1, "" + phone + ".bin", this);
-        email = MyMoneyTools.getDataFromFileAt(2, "" + phone + ".bin", this);
-        pass = MyMoneyTools.getDataFromFileAt(4, "" + phone + ".bin", this);
+        if (!MyMoneyTools.getDataFromFile("" + SaveSharedPreferences
+                .getUserName(this) + ".bin", this, saved_file_data))
+            finish();
 
-        nametxt.getEditText().setText(name);
-        emailtxt.getEditText().setText(email);
-        phonetxt.getEditText().setText(phone);
+        nametxt.getEditText().setText(saved_file_data[0]);
+        emailtxt.getEditText().setText(saved_file_data[1]);
+        phonetxt.getEditText().setText(saved_file_data[2]);
 
         nametxt.getEditText().addTextChangedListener(new TextWatcher() {
             @Override
@@ -133,62 +126,65 @@ public class ProfileSetting extends AppCompatActivity implements PasswordDialog.
     @Override
     public void checkPass(boolean flag) {
         if (flag) {
-            if (!nametxt.getEditText().getText().toString().equals(name)) {
-                MyMoneyTools.setDataInFileAt(1, "" + phone + ".bin", nametxt
-                        .getEditText().getText().toString(), getApplicationContext());
+            File dir = getFilesDir();
+            File file = new File(dir, "" + saved_file_data[2] + ".bin");
+            if (file.delete()) {
+                if (!MyMoneyTools.setDataInFile("" + new_file_data[2] + ".bin", this, new_file_data)) {
+                    finish();
+                    // attempt to recover the deleted file in case of an error occurs
+                    MyMoneyTools.setDataInFile("" + saved_file_data[2] + ".bin", this, saved_file_data);
+                }
+                // if old and new phone numbers are not equal
+                if (!new_file_data[2].equals(saved_file_data[2])) {
+                    if (!MyMoneyTools.deregister_phone(this, saved_file_data[2])) {
+                        finish();
+                        // attempt to recover the deleted file in case of an error occurs
+                        MyMoneyTools.setDataInFile("" + saved_file_data[2] + ".bin", this, saved_file_data);
+                    }
+                    if (!MyMoneyTools.register_phone(this, new_file_data[2]))
+                        finish();
+                }
+                // this block logs out the user after data has been changed
+                SaveSharedPreferences.clearUserName(this);
+                finishAffinity();
+                Toast.makeText(this, "Changes saved, Login again", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, loginactivity.class);
+                startActivity(intent);
             }
         }
     }
 
     private boolean isInputValid() {
 
-        String entered_name = nametxt.getEditText().getText().toString();
-        String entered_email = emailtxt.getEditText().getText().toString();
-        String entered_phone = phonetxt.getEditText().getText().toString();
+        new_file_data[0] = nametxt.getEditText().getText().toString();
+        new_file_data[1] = emailtxt.getEditText().getText().toString();
+        new_file_data[2] = phonetxt.getEditText().getText().toString();
+        new_file_data[3] = saved_file_data[3];
+        new_file_data[4] = saved_file_data[4];
 
         boolean valid = true;
-        if (entered_name.length() == 0) {
+        if (new_file_data[0].length() == 0) {
             nametxt.setError("This field is required");
             valid = false;
         }
-        if (entered_email.length() == 0) {
+        if (new_file_data[1].length() == 0) {
             emailtxt.setError("This field is required");
             valid = false;
         }
-        if (entered_phone.length() == 0) {
+        if (new_file_data[2].length() == 0) {
             phonetxt.setError("This field is required");
             valid = false;
         }
-        if (!Patterns.EMAIL_ADDRESS.matcher(entered_email).matches() && entered_email.length() != 0) {
+        if (!Patterns.EMAIL_ADDRESS.matcher(new_file_data[1]).matches() && new_file_data[1].length() != 0) {
             emailtxt.setError("Email not valid");
             valid = false;
         }
-        if (!MyMoneyTools.isPhoneValid(entered_phone) && entered_phone.length() != 0) {
+        if (!MyMoneyTools.isPhoneValid(new_file_data[2]) && new_file_data[2].length() != 0) {
             phonetxt.setError("Phone number not valid");
             valid = false;
         }
         if (valid) {
-            boolean EOF = false;
-
-            try (FileInputStream fin = openFileInput("pnos.bin");
-                 DataInputStream din = new DataInputStream(fin);) {
-                while (!EOF) {
-                    try {
-                        if (entered_phone.equals(din.readUTF()) && !entered_phone.equals(phone)) {
-                            Toast.makeText(getApplicationContext(), "Phone number already registered", Toast.LENGTH_SHORT).show();
-                            valid = false;
-                            EOF = true;
-                        }
-                    } catch (EOFException e) {
-                        EOF = true;
-                    }
-                }
-            } catch (FileNotFoundException e) {
-                ;
-            } catch (IOException e) {
-                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
-                valid = false;
-            }
+            valid = !MyMoneyTools.isPhoneRegistered(this, new_file_data[2]);
         }
         return valid;
     }
