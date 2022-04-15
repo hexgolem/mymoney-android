@@ -4,17 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.231" />
+        <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable/add_money.xml" value="0.201" />
+        <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable/arc_orange.xml" value="0.23" />
+        <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable/balance_background.xml" value="0.23" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable/bg_gradient.xml" value="0.201" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.201" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.23" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable/splash_background.xml" value="0.2" />
+        <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/drawable/wallet_background.xml" value="0.23" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/activity_about.xml" value="0.264" />
+        <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/activity_add_money.xml" value="0.19927536231884058" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/activity_home_screen.xml" value="0.176" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/activity_login.xml" value="0.1875" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/activity_main.xml" value="0.152" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/activity_profile_setting.xml" value="0.264" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/activity_signup.xml" value="0.264" />
+        <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/balance.xml" value="0.1875" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/fragment_blank.xml" value="0.1875" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/fragment_dashboard.xml" value="0.1875" />
         <entry key="..\:/Users/xanya/AndroidStudioProjects/MyMoney/app/src/main/res/layout/fragment_history.xml" value="0.1875" />

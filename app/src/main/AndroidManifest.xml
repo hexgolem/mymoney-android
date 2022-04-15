@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMoney">
         <activity
+            android:name=".AddMoney"
+            android:exported="false" />
+        <activity
             android:name=".ProfileSetting"
             android:exported="false" />
         <activity
