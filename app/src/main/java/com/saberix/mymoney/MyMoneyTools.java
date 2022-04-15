@@ -220,7 +220,6 @@ public class MyMoneyTools {
                 try {
                     if (phone.equals(din.readUTF())) {
                         {
-                            Toast.makeText(ctx, "Phone number already registered", Toast.LENGTH_SHORT).show();
                             return true;
                         }
                     }

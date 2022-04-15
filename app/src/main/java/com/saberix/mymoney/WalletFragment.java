@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 public class WalletFragment extends Fragment {
 
+
     public WalletFragment() {
         // Required empty public constructor
     }
@@ -28,6 +29,7 @@ public class WalletFragment extends Fragment {
         super.onResume();
 
         Button add_money=getActivity().findViewById(R.id.button_addmoney);
+        Button withdraw=getActivity().findViewById(R.id.button_withdraw);
         String phone=SaveSharedPreferences.getUserName(getContext());
         String available_amount=MyMoneyTools.getDataFromFileAt(5,""+phone+".bin",getContext());
         TextView txt=getActivity().findViewById(R.id.txt);
@@ -38,6 +40,14 @@ public class WalletFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getContext(),AddMoney.class);
+                startActivity(intent);
+            }
+        });
+
+        withdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getContext(),WithdrawMoney.class);
                 startActivity(intent);
             }
         });

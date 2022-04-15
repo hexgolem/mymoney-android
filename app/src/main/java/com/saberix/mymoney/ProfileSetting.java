@@ -184,7 +184,9 @@ public class ProfileSetting extends AppCompatActivity implements PasswordDialog.
             valid = false;
         }
         if (valid) {
-            valid = !MyMoneyTools.isPhoneRegistered(this, new_file_data[2]);
+            if(!(valid = !MyMoneyTools.isPhoneRegistered(this, new_file_data[2]))){
+                Toast.makeText(this, "Phone number already registered", Toast.LENGTH_SHORT).show();
+            }
         }
         return valid;
     }

@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationBarView;
 
-public class HomeScreen extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener {
+public class HomeScreen extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener{
 
     private NavigationBarView navigationBarView;
     WalletFragment walletFragment=new WalletFragment();
@@ -122,4 +122,5 @@ public class HomeScreen extends AppCompatActivity implements NavigationBarView.O
         }
         return super.onKeyDown(keyCode, event);
     }
+
 }

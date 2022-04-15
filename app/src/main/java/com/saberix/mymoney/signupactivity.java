@@ -118,7 +118,9 @@ public class signupactivity extends AppCompatActivity {
             valid = false;
         }
         if (valid) {
-            valid = !MyMoneyTools.isPhoneRegistered(this, entered_data[2]);
+            if(!(valid = !MyMoneyTools.isPhoneRegistered(this, entered_data[2]))){
+                Toast.makeText(this, "Phone number already registered", Toast.LENGTH_SHORT).show();
+            }
         }
         return valid;
     }
